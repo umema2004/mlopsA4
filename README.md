@@ -139,27 +139,10 @@ For detailed documentation, refer to:
 - Individual component README files in each directory
 - `i222036_A4_report.docx` - Comprehensive project report
 
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-1. Create a feature branch
-2. Make your changes
-3. Add tests for new functionality
-4. Submit a pull request
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
 ## 👤 Author
 
 **umema2004**
 
-## 📞 Support
-
-For issues and questions, please open an issue on the GitHub repository.
-
----
 
 **Last Updated**: 2026-04-25  
 **Repository**: [umema2004/mlopsA4](https://github.com/umema2004/mlopsA4)
