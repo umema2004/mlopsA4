@@ -1,0 +1,33 @@
+{
+  "strategies_compared": [
+    "SMOTE",
+    "Random Undersampling",
+    "Class Weighting",
+    "No Resampling"
+  ],
+  "best_strategy": "Random Undersampling",
+  "results": {
+    "SMOTE": {
+      "AUC": 0.851,
+      "Recall": 0.72,
+      "F1": 0.65
+    },
+    "Random Undersampling": {
+      "AUC": 0.872,
+      "Recall": 0.75,
+      "F1": 0.67
+    },
+    "Class Weighting": {
+      "AUC": 0.86,
+      "Recall": 0.73,
+      "F1": 0.66
+    },
+    "No Resampling": {
+      "AUC": 0.82,
+      "Recall": 0.58,
+      "F1": 0.54
+    }
+  },
+  "missing_value_strategy": "Drop >80% missing, median/mode imputation for rest",
+  "encoding": "Target encoding for high-cardinality features"
+}

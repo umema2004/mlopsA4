@@ -1,0 +1,22 @@
+{
+  "cost_matrix": {
+    "FN_cost": 500,
+    "FP_cost": 10
+  },
+  "optimal_threshold": 0.45,
+  "comparison": {
+    "standard_training": {
+      "threshold": 0.5,
+      "total_cost": "$384,000",
+      "recall": 0.71
+    },
+    "cost_sensitive_training": {
+      "threshold": 0.45,
+      "total_cost": "$103,820",
+      "recall": 0.84,
+      "savings_vs_standard": "$280,180"
+    }
+  },
+  "business_impact": "Cost-sensitive model saves $280k by reducing missed fraud (FN=$500 each)",
+  "model_saved": "cost_sensitive_model.pkl"
+}

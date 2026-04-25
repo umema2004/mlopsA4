@@ -1,0 +1,10 @@
+- job_name: 'fraud-inference-api'
+  static_configs:
+    - targets: ['172.30.232.166:8000']
+  metrics_path: '/metrics'
+  scrape_interval: 15s
+
+- job_name: 'fraud-detection-app'
+  static_configs:
+    - targets: ['172.30.232.166:8000']
+  scrape_interval: 30s

@@ -1,0 +1,18 @@
+{
+  "early": {
+    "auc": 0.662,
+    "recall": 0.2198
+  },
+  "late": {
+    "auc": 0.6694,
+    "recall": 0.1931
+  },
+  "drift": {
+    "recall_drop": 0.0267,
+    "auc_drop": -0.0074
+  },
+  "new_patterns": {
+    "recall": 0.198,
+    "detected": 99
+  }
+}

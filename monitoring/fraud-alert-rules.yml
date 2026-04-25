@@ -1,0 +1,49 @@
+groups:
+  - name: fraud_detection_alerts
+    interval: 30s
+    rules:
+
+      - alert: FraudRecallDropped
+        expr: fraud_model_recall < 0.65
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Fraud recall dropped below threshold"
+          description: "Recall is {{ $value | printf \"%.2f\" }}, below 0.65 threshold. Retraining needed."
+
+      - alert: HighFalsePositiveRate
+        expr: fraud_model_fpr > 0.30
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "False positive rate too high"
+          description: "FPR is {{ $value | printf \"%.2f\" }}, above 0.30 threshold."
+
+      - alert: APIHighLatency
+        expr: rate(fraud_api_latency_seconds_sum[1m]) / rate(fraud_api_latency_seconds_count[1m]) > 0.5
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "API latency spike detected"
+          description: "Average latency is {{ $value | printf \"%.3f\" }}s, above 500ms threshold."
+
+      - alert: APIErrorRateHigh
+        expr: rate(fraud_api_requests_total{status="500"}[5m]) > 0.1
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High API error rate"
+          description: "Error rate is {{ $value | printf \"%.2f\" }} req/s."
+
+      - alert: DataDriftDetected
+        expr: fraud_confidence_score_sum / fraud_confidence_score_count < 0.2
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Possible data drift detected"
+          description: "Average confidence score {{ $value | printf \"%.2f\" }} unusually low — feature distribution may have shifted."

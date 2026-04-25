@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-extra-config
+  namespace: monitoring
+data:
+  extra-scrape.yml: |
+    - job_name: 'fraud-detection-api'
+      static_configs:
+        - targets: ['host.minikube.internal:8000']
+      metrics_path: /metrics
+      scrape_interval: 15s
+
+  alert-rules.yml: |
+    groups:
+      - name: fraud_detection_alerts
+        rules:
+          - alert: FraudRecallLow
+            expr: fraud_model_recall < 0.75
+            for: 1m
+            labels:
+              severity: critical
+            annotations:
+              summary: "Fraud recall dropped below threshold"
+              description: "Fraud recall is {{ $value }} which is below 0.75"
+
+          - alert: DataDriftHigh
+            expr: fraud_data_drift_score > 0.1
+            for: 1m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Data drift exceeded threshold"
+              description: "Drift score is {{ $value }} which exceeds 0.1"
+
+          - alert: APILatencyHigh
+            expr: histogram_quantile(0.95, fraud_api_latency_seconds_bucket) > 1.0
+            for: 2m
+            labels:
+              severity: warning
+            annotations:
+              summary: "API latency spike detected"
+              description: "95th percentile latency is {{ $value }}s"
+
+          - alert: HighFalsePositiveRate
+            expr: fraud_false_positive_rate > 0.2
+            for: 1m
+            labels:
+              severity: warning
+            annotations:
+              summary: "False positive rate too high"
+              description: "FPR is {{ $value }} which exceeds 0.2"
+
+          - alert: MissingValueRateHigh
+            expr: fraud_missing_value_rate > 0.1
+            for: 1m
+            labels:
+              severity: warning
+            annotations:
+              summary: "High missing value rate in incoming data"
+              description: "Missing value rate is {{ $value }}"

@@ -1,0 +1,22 @@
+{
+  "model": "LightGBM",
+  "top_features": {
+    "V258": 0.2556,
+    "C1": 0.2372,
+    "card6": 0.2063,
+    "C14": 0.194,
+    "C13": 0.1673,
+    "TransactionAmt": 0.1671,
+    "V294": 0.163,
+    "C11": 0.1484,
+    "DeviceInfo": 0.1461,
+    "V70": 0.1086
+  },
+  "top_feature": "V258",
+  "plots": [
+    "shap_bar.png",
+    "shap_beeswarm.png",
+    "shap_waterfall_fraud.png",
+    "shap_waterfall_legit.png"
+  ]
+}

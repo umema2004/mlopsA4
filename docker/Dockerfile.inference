@@ -1,0 +1,12 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir \
+    fastapi uvicorn pandas numpy \
+    scikit-learn xgboost joblib
+
+COPY data_processing/ ./data_processing/
+
+EXPOSE 8000
+CMD ["uvicorn", "data_processing.inference_api:app", "--host", "0.0.0.0", "--port", "8000"]

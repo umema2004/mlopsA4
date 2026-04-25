@@ -1,0 +1,12 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir \
+    pandas numpy scikit-learn \
+    xgboost lightgbm imbalanced-learn \
+    category_encoders joblib shap
+
+COPY data_processing/ ./data_processing/
+
+CMD ["python", "data_processing/model_training.py"]
