@@ -1,4 +1,4 @@
-# MLOps A4 - Machine Learning Operations Pipeline
+# Machine Learning Operations Pipeline
 
 A comprehensive machine learning operations (MLOps) project demonstrating end-to-end ML pipeline implementation with Kubernetes orchestration, Docker containerization, data processing, monitoring, and testing.
 
